@@ -10,9 +10,10 @@ router.post('/category', CategoryController.createCategory)
 router.put('/category/:id', CategoryController.updateCategory)
 router.delete('/category/:id', CategoryController.deleteCategory)
 router.get('/product', ProductController.showProduct)
-router.post('/product/:id', ProductController.getProduct)
-router.put('/product', ProductController.createProduct)
-router.delete('/product/:id', ProductController.updateProduct)
-router.get('/product', ProductController.deleteProduct)
+router.get('/product', ProductController.getProduct)
+router.post('/product', ProductController.createProduct)
+router.put('/product', ProductController.updateProduct)
+router.delete('/product/:id', ProductController.deleteProduct)
+
 
 module.exports = router;

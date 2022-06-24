@@ -17,12 +17,13 @@ exports.showProduct = showProduct;
 const getProduct = async (req, res) => {
     try {
         const { id } = req.params;
-        const product = await prisma.Product.findUnique({
+        console.log('req.params', req.params);
+        const category = await prisma.Product.findUnique({
             where: {
                 id: Number(id),
             },
         });
-        return res.json(product);
+        return res.json(category);
     }
     catch (e) {
         console.error(e);
@@ -33,12 +34,17 @@ const getProduct = async (req, res) => {
 exports.getProduct = getProduct;
 const createProduct = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, code, quantity, is_active, categoryId } = req.body;
         const product = await prisma.Product.create({
             data: {
-                name,
+                name: name,
+                code: code,
+                quantity: Number(quantity),
+                is_active: Boolean(is_active),
+                categoryId: Number(categoryId),
             },
         });
+        console.log(product);
         return res.json(product);
     }
     catch (e) {
@@ -51,13 +57,17 @@ exports.createProduct = createProduct;
 const updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name } = req.body;
+        const { name, code, quantity, is_active, categoryId } = req.body;
         const product = await prisma.Product.update({
             where: {
                 id: Number(id),
             },
             data: {
                 name,
+                code: Number(code),
+                quantity: Number(quantity),
+                is_active: Boolean(is_active),
+                categoryId: Number(categoryId),
             }
         });
         return res.json(product);

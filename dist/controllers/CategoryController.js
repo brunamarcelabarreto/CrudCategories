@@ -18,6 +18,7 @@ exports.showCategory = showCategory;
 const getCategory = async (req, res) => {
     try {
         const { id } = req.params;
+        console.log('req.params', req.params);
         const category = await prisma.Category.findUnique({
             where: {
                 id: Number(id),
@@ -34,7 +35,12 @@ const getCategory = async (req, res) => {
 exports.getCategory = getCategory;
 const createCategory = async (req, res) => {
     try {
-        const { name } = req.body;
+        let name = undefined;
+        if (req.body && req.body.name) {
+            name = req.body.name;
+        }
+        else
+            throw new Error('property name is not defined in payload');
         const category = await prisma.Category.create({
             data: {
                 name,
@@ -52,7 +58,9 @@ exports.createCategory = createCategory;
 const updateCategory = async (req, res) => {
     try {
         const { id } = req.params;
+        console.log('id11111111', id);
         const { name } = req.body;
+        console.log('name4444444444', name);
         const category = await prisma.Category.update({
             where: {
                 id: Number(id),
