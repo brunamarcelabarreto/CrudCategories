@@ -52,9 +52,7 @@ export const createCategory = async (req: Request, res: Response): Promise<Respo
 export const updateCategory = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { id } = req.params;
-    console.log('id11111111',id);
     const { name } = req.body;
-    console.log('name4444444444',name);
     const category = await prisma.Category.update({
       where: {
         id: Number(id),

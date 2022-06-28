@@ -19,7 +19,7 @@ model Category {
 model Product {
   id       Int  @id @default(autoincrement())
   name String
-  code String
+  code Int
   quantity Int
   is_active Boolean
   category   Category @relation(fields: [categoryId], references: [id])
