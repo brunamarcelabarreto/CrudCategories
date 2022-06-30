@@ -1,8 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = exports.showCategory = void 0;
+exports.deleteCategory = exports.updateCategory = exports.createCategory = exports.getCategory = exports.showCategory = exports.countCategory = void 0;
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const countCategory = async (req, res) => {
+    try {
+        const categories = await prisma.category.count();
+        return res.json(categories);
+    }
+    catch (e) {
+        console.error(e);
+        throw new Error(`Error: ${e}`);
+    }
+};
+exports.countCategory = countCategory;
 const showCategory = async (req, res) => {
     try {
         const categories = await prisma.category.findMany();

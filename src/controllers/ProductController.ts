@@ -3,6 +3,16 @@ import express, { Request, Response } from "express";
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
+export const countProduct = async (req: Request, res: Response): Promise<Response> => {
+  try {
+    const products = await prisma.product.count(); 
+    return res.json(products)
+  } catch (e) {
+    console.error(e)
+    throw new Error(`Error: ${e}`)
+  }
+};
+
 export const showProduct = async (req: Request, res: Response): Promise<Response> => {
   try {
     const products = await prisma.product.findMany();

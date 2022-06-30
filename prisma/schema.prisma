@@ -22,6 +22,6 @@ model Product {
   code Int
   quantity Int
   is_active Boolean
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int 
+  category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int?
 }

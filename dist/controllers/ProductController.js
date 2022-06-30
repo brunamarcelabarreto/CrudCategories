@@ -1,8 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.showProduct = void 0;
+exports.deleteProduct = exports.updateProduct = exports.createProduct = exports.getProduct = exports.showProduct = exports.countProduct = void 0;
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
+const countProduct = async (req, res) => {
+    try {
+        const products = await prisma.product.count();
+        return res.json(products);
+    }
+    catch (e) {
+        console.error(e);
+        throw new Error(`Error: ${e}`);
+    }
+};
+exports.countProduct = countProduct;
 const showProduct = async (req, res) => {
     try {
         const products = await prisma.product.findMany();

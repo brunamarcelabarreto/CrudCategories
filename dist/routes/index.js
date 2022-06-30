@@ -5,6 +5,8 @@ const CategoryController = require('../controllers/CategoryController');
 const ProductController = require('../controllers/ProductController');
 const FindManyProductsInCategoryController = require('../controllers/FindManyProductsInCategoryController');
 router.get('/category/detail/:id', FindManyProductsInCategoryController.showProductInCategory);
+router.get('/count-category', CategoryController.countCategory);
+router.get('/count-product', ProductController.countProduct);
 router.get('/category', CategoryController.showCategory);
 router.get('/category/:id', CategoryController.getCategory);
 router.post('/category', CategoryController.createCategory);
